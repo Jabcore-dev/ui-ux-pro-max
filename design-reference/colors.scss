@@ -1,0 +1,124 @@
+// Light and Dark theme color definitions
+:root {
+    // Original light theme colors (RESTORED TO ORIGINAL)
+    --c-black: #000;
+    --c-white: #fff;
+    --c-creme: #f4f4f4;
+    --c-dark-blue: #00244f;
+    --c-dark-gray: #3f575c;
+    --c-light-blue: #00418e; //primary color!!!
+    --c-light-gray: #e5e5e5;
+    --c-gray: #808080;
+    --c-shared: #a0bee5;
+    --c-shared-light: #d8e4f4;
+    --c-shared-dark: #447fcc;
+    --c-neutral: #72869d;
+    --c-orange: #e8850c;
+    --c-red: #ff6a6c;
+    --c-disabled: #8692a6;
+    --c-error: #ea3d3d;
+    --c-error-bg: #fef5f5;
+    --c-warning: #e8850c;
+    --c-warning-bg: #fef9f3;
+    --c-success: #91dd91;
+    --c2-lighter: #b2bbc6;
+    --c2-dark-blue: #000d1c;
+    --c2-dark-orange: #d45400;
+    --c2-middle-blue: #003b81;
+    --light-blue: #4070aa;
+
+    // Light theme specific colors (ORIGINAL VALUES)
+    --c-background: #f5f5f5; // Original background
+    --c-surface: #ffffff; // Original white surfaces
+    --c-surface-variant: #f4f4f4; // Original variant
+    --c-text-primary: var(--c-primary); // Primary color for titles
+    --c-text: #000000; // Original black text
+    --c-text-secondary: #72869d; // Original secondary
+    --c-text-muted: #8692a6; // Original muted
+    --c-border: #e5e5e5; // Original border
+    --c-border-light: #f0f0f0; // Original light border
+    --c-shadow: rgba(0, 0, 0, 0.1);
+    --c-shadow-light: rgba(0, 0, 0, 0.05);
+    --c-input-bg: #ffffff;
+    --c-input-border: #b2bbc6; // Original input border
+    --c-hover: rgba(0, 65, 142, 0.08);
+    --c-active: rgba(0, 65, 142, 0.12);
+    --c-warning-light: #f8b877;
+
+    // Background elements
+    --c-bg-dots: #d1d5db; // Subtle dots on light surface
+    --c-diagram-item-bg: #cecece;
+    --c-diagram-item-color: #3f575c;
+
+
+    // Primary and secondary (ORIGINAL)
+    --c-primary: var(--c-light-blue); // Keep original blue
+    --c-secondary: var(--c-neutral);
+
+    // Primary text color - for text that uses primary color
+    --c-primary-text: var(--c-primary); // Same as primary in light mode
+
+    // Header specific
+    --c-header-bg: var(--c-primary);
+    --c-header-text: var(--c-white);
+    --c-bg: var(--c-white)
+}
+
+[data-theme="dark"] {
+    // Dark theme overrides
+    --c-background: #0f0f0f;
+    --c-surface: #1c1c1c;
+    --c-surface-variant: #2d2d2d;
+    --c-text-primary: #ffffff;
+    --c-text: #ffffff;
+    --c-text-secondary: #b0b0b0;
+    --c-text-muted: #888888;
+    --c-dark-blue: #ffffff;
+    --c-border: #404040;
+    --c-border-light: #333333;
+    --c-shadow: rgba(0, 0, 0, 0.6);
+    --c-shadow-light: rgba(0, 0, 0, 0.3);
+    --c-input-bg: #2d2d2d;
+    --c-input-border: #555555;
+    --c-hover: rgba(66, 133, 244, 0.12);
+    --c-active: rgba(66, 133, 244, 0.2);
+
+    // Background elements
+    --c-bg-dots: #040404; // Subtle dots on dark surface
+    --c-diagram-item-bg: #404040;
+    --c-diagram-item-color: #c4c4c4;
+
+    // Dark theme specific adjustments
+    --c-primary: var(--c-light-blue); // Keep same primary color as light mode
+    --c-primary-text: var(--c-white); // White text when using primary color in dark mode
+    --c-creme: #1e1e1e;
+
+    // Dark header
+    --c-header-bg: var(--c-surface);
+    --c-header-text: var(--c-text);
+    --c-light-gray: #404040;
+    --c-gray: #999999;
+    --c-shared: #5a87c7;
+    --c-shared-light: #2c3e50;
+    --c-shared-dark: #6b9bd2;
+    --c-disabled: #777777;
+    --c-error-bg: #2d1b1b;
+    --c-warning-bg: #2d2318;
+    --c-warning-light: #8b5a2b;
+    --c-success: #5eb85e;
+    --c2-lighter: #5a6570;
+}
+
+// Scoped theme transitions (avoid scrollbar & root flash)
+.theme-transitioning * {
+    transition: .3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+// Fix ProjectSummary table flashing - exclude only base-table from transitions
+.theme-transitioning .base-table,
+.theme-transitioning .base-table * {
+    transition: none !important;
+}
+
+
+
