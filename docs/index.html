@@ -2785,182 +2785,31 @@ body {
         <div class="construction-layout">
           <!-- Canvas area -->
           <div>
-            <div class="construction-canvas" style="background:#f0f4f8;padding:20px">
-              <!-- 3D Isometric SVG -->
-              <svg width="680" height="480" viewBox="0 0 680 480" style="max-width:100%">
-                <defs>
-                  <!-- Gradients for 3D effect -->
-                  <linearGradient id="g-front" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#dce4ed"/>
-                    <stop offset="100%" stop-color="#c5ced9"/>
-                  </linearGradient>
-                  <linearGradient id="g-top" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stop-color="#e8eef5"/>
-                    <stop offset="100%" stop-color="#d5dde8"/>
-                  </linearGradient>
-                  <linearGradient id="g-side" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#b8c3d0"/>
-                    <stop offset="100%" stop-color="#a0adb8"/>
-                  </linearGradient>
-                  <linearGradient id="g-panel" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#e2e8f0"/>
-                    <stop offset="100%" stop-color="#d0d8e2"/>
-                  </linearGradient>
-                  <filter id="shadow1" x="-5%" y="-5%" width="115%" height="115%">
-                    <feDropShadow dx="3" dy="6" stdDeviation="8" flood-color="#00244f" flood-opacity="0.12"/>
-                  </filter>
-                  <!-- Arrow markers -->
-                  <marker id="arr-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e7d32"/></marker>
-                  <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><polygon points="8 0, 0 3, 8 6" fill="#1565c0"/></marker>
-                  <marker id="arr-brown" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6d4c41"/></marker>
-                  <marker id="arr-yellow" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><polygon points="8 0, 0 3, 8 6" fill="#f57f17"/></marker>
-                </defs>
-
-                <!-- Title -->
-                <text x="340" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#00244f" font-family="Inter, sans-serif">DUPLEX 1500 Multi Eco — izometrický pohled</text>
-
-                <!-- ===== UNIT BODY (isometric box) ===== -->
-                <g filter="url(#shadow1)">
-                  <!-- Front face -->
-                  <polygon points="80,170 480,170 480,370 80,370" fill="url(#g-front)" stroke="#8a98a8" stroke-width="1.5"/>
-                  <!-- Top face -->
-                  <polygon points="80,170 480,170 560,110 160,110" fill="url(#g-top)" stroke="#8a98a8" stroke-width="1.2"/>
-                  <!-- Right side face -->
-                  <polygon points="480,170 560,110 560,310 480,370" fill="url(#g-side)" stroke="#8a98a8" stroke-width="1.2"/>
-                </g>
-
-                <!-- Front face panel lines (service panels) -->
-                <line x1="200" y1="175" x2="200" y2="365" stroke="#a0adb8" stroke-width="0.8"/>
-                <line x1="360" y1="175" x2="360" y2="365" stroke="#a0adb8" stroke-width="0.8"/>
-
-                <!-- Panel 1: left - Fan ETA section -->
-                <rect x="95" y="185" width="90" height="170" rx="3" fill="url(#g-panel)" stroke="#8a98a8" stroke-width="0.8"/>
-                <!-- Vent grille lines -->
-                <line x1="105" y1="210" x2="175" y2="210" stroke="#b0bbc6" stroke-width="0.6"/>
-                <line x1="105" y1="220" x2="175" y2="220" stroke="#b0bbc6" stroke-width="0.6"/>
-                <line x1="105" y1="230" x2="175" y2="230" stroke="#b0bbc6" stroke-width="0.6"/>
-                <line x1="105" y1="240" x2="175" y2="240" stroke="#b0bbc6" stroke-width="0.6"/>
-                <line x1="105" y1="250" x2="175" y2="250" stroke="#b0bbc6" stroke-width="0.6"/>
-                <!-- Fan circle visible through grille -->
-                <circle cx="140" cy="255" r="22" fill="none" stroke="#8692a6" stroke-width="1" stroke-dasharray="4 3"/>
-                <circle cx="140" cy="255" r="8" fill="#b8c3d0" stroke="#8692a6" stroke-width="0.8"/>
-                <!-- Label -->
-                <rect x="100" y="320" width="80" height="22" rx="3" fill="rgba(245,127,23,0.1)" stroke="#f57f17" stroke-width="0.8"/>
-                <text x="140" y="335" text-anchor="middle" font-size="8" fill="#f57f17" font-weight="600" font-family="Inter, sans-serif">Mi.180.EC1</text>
-
-                <!-- Panel 2: center - Heat exchanger -->
-                <rect x="215" y="185" width="130" height="170" rx="3" fill="url(#g-panel)" stroke="#8a98a8" stroke-width="0.8"/>
-                <!-- Hex pattern for heat exchanger -->
-                <polygon points="280,210 310,225 310,255 280,270 250,255 250,225" fill="none" stroke="#00418e" stroke-width="1.2" stroke-dasharray="5 3" opacity="0.6"/>
-                <polygon points="280,220 300,230 300,250 280,260 260,250 260,230" fill="#dce8f8" stroke="#00418e" stroke-width="0.8" opacity="0.5"/>
-                <text x="280" y="244" text-anchor="middle" font-size="10" fill="#00418e" font-weight="700" font-family="Inter, sans-serif">S8.C</text>
-                <!-- Specs under hex -->
-                <text x="280" y="290" text-anchor="middle" font-size="9" fill="#72869d" font-family="Inter, sans-serif">89% | 8.2 kW</text>
-                <!-- Bypass arrow -->
-                <path d="M250 310 Q265 300 280 310 Q295 320 310 310" stroke="#00418e" stroke-width="0.8" fill="none" stroke-dasharray="3 2"/>
-                <text x="280" y="330" text-anchor="middle" font-size="7" fill="#8692a6" font-family="Inter, sans-serif">bypass</text>
-
-                <!-- Panel 3: right - Fan SUP + Filter -->
-                <rect x="375" y="185" width="90" height="170" rx="3" fill="url(#g-panel)" stroke="#8a98a8" stroke-width="0.8"/>
-                <!-- Filter element with zigzag -->
-                <path d="M390 200 L390 280" stroke="#2e7d32" stroke-width="0.7" opacity="0.6"/>
-                <path d="M400 200 L400 280" stroke="#2e7d32" stroke-width="0.7" opacity="0.6"/>
-                <path d="M410 200 L410 280" stroke="#2e7d32" stroke-width="0.7" opacity="0.6"/>
-                <path d="M420 200 L420 280" stroke="#2e7d32" stroke-width="0.7" opacity="0.6"/>
-                <rect x="385" y="195" width="40" height="90" rx="2" fill="none" stroke="#2e7d32" stroke-width="1" opacity="0.5"/>
-                <text x="405" y="300" text-anchor="middle" font-size="8" fill="#2e7d32" font-weight="500" font-family="Inter, sans-serif">F7</text>
-                <!-- Fan circle -->
-                <circle cx="435" cy="240" r="20" fill="none" stroke="#1565c0" stroke-width="1.2"/>
-                <circle cx="435" cy="240" r="7" fill="#d0dff0" stroke="#1565c0" stroke-width="0.8"/>
-                <!-- Fan blade hint -->
-                <path d="M429 234 Q435 242 441 234" fill="#1565c0" opacity="0.25"/>
-                <path d="M429 246 Q435 238 441 246" fill="#1565c0" opacity="0.25"/>
-                <!-- Label -->
-                <rect x="380" y="320" width="80" height="22" rx="3" fill="rgba(21,101,192,0.1)" stroke="#1565c0" stroke-width="0.8"/>
-                <text x="420" y="335" text-anchor="middle" font-size="8" fill="#1565c0" font-weight="600" font-family="Inter, sans-serif">Me.180.EC1</text>
-
-                <!-- Top face details: control module -->
-                <rect x="170" y="120" width="70" height="40" rx="2" fill="#c5ced9" stroke="#8a98a8" stroke-width="0.8"/>
-                <text x="205" y="144" text-anchor="middle" font-size="7" fill="#5a6a7a" font-weight="600" font-family="Inter, sans-serif">aMotion</text>
-                <circle cx="195" cy="133" r="3" fill="#2e7d32"/>
-                <circle cx="215" cy="133" r="3" fill="#e65100" opacity="0.4"/>
-
-                <!-- Top face: cable entry -->
-                <rect x="280" y="115" width="40" height="20" rx="2" fill="#b8c3d0" stroke="#8a98a8" stroke-width="0.6"/>
-                <text x="300" y="129" text-anchor="middle" font-size="6" fill="#5a6a7a" font-family="Inter, sans-serif">El. vstup</text>
-
-                <!-- Side face details: duct connections -->
-                <!-- Port e1 ODA (right side, bottom) -->
-                <ellipse cx="520" cy="280" rx="22" ry="16" fill="#c5d5c5" stroke="#2e7d32" stroke-width="1.5"/>
-                <ellipse cx="520" cy="280" rx="16" ry="11" fill="#dce8dc" stroke="#2e7d32" stroke-width="0.8"/>
-                <text x="520" y="284" text-anchor="middle" font-size="8" fill="#2e7d32" font-weight="700" font-family="Inter, sans-serif">e1</text>
-                <!-- Arrow -->
-                <path d="M545 280 L590 280" stroke="#2e7d32" stroke-width="2" marker-end="url(#arr-green)"/>
-                <text x="605" y="275" font-size="10" fill="#2e7d32" font-weight="600" font-family="Inter, sans-serif">ODA</text>
-                <text x="605" y="288" font-size="8" fill="#72869d" font-family="Inter, sans-serif">venkovní</text>
-
-                <!-- Port i2 EHA (right side, top) -->
-                <ellipse cx="530" cy="185" rx="22" ry="16" fill="#d8cfc8" stroke="#6d4c41" stroke-width="1.5"/>
-                <ellipse cx="530" cy="185" rx="16" ry="11" fill="#e8dfd8" stroke="#6d4c41" stroke-width="0.8"/>
-                <text x="530" y="189" text-anchor="middle" font-size="8" fill="#6d4c41" font-weight="700" font-family="Inter, sans-serif">i2</text>
-                <path d="M555 185 L590 185" stroke="#6d4c41" stroke-width="2" marker-end="url(#arr-brown)"/>
-                <text x="605" y="180" font-size="10" fill="#6d4c41" font-weight="600" font-family="Inter, sans-serif">EHA</text>
-                <text x="605" y="193" font-size="8" fill="#72869d" font-family="Inter, sans-serif">odpadní</text>
-
-                <!-- Port e2 SUP (front left) -->
-                <ellipse cx="90" cy="225" rx="18" ry="22" fill="#c8d5e8" stroke="#1565c0" stroke-width="1.5"/>
-                <ellipse cx="90" cy="225" rx="12" ry="16" fill="#dce8f5" stroke="#1565c0" stroke-width="0.8"/>
-                <text x="90" y="229" text-anchor="middle" font-size="8" fill="#1565c0" font-weight="700" font-family="Inter, sans-serif">e2</text>
-                <path d="M68 225 L30 225" stroke="#1565c0" stroke-width="2" marker-end="url(#arr-blue)"/>
-                <text x="22" y="218" font-size="10" fill="#1565c0" font-weight="600" font-family="Inter, sans-serif" text-anchor="end">SUP</text>
-                <text x="22" y="233" font-size="8" fill="#72869d" font-family="Inter, sans-serif" text-anchor="end">přiváděný</text>
-
-                <!-- Port i1 ETA (front left bottom) -->
-                <ellipse cx="90" cy="310" rx="18" ry="22" fill="#e5dfc5" stroke="#f57f17" stroke-width="1.5"/>
-                <ellipse cx="90" cy="310" rx="12" ry="16" fill="#f5efd5" stroke="#f57f17" stroke-width="0.8"/>
-                <text x="90" y="314" text-anchor="middle" font-size="8" fill="#f57f17" font-weight="700" font-family="Inter, sans-serif">i1</text>
-                <path d="M68 310 L30 310" stroke="#f57f17" stroke-width="2" marker-end="url(#arr-yellow)"/>
-                <text x="22" y="303" font-size="10" fill="#f57f17" font-weight="600" font-family="Inter, sans-serif" text-anchor="end">ETA</text>
-                <text x="22" y="318" font-size="8" fill="#72869d" font-family="Inter, sans-serif" text-anchor="end">odváděný</text>
-
-                <!-- Condensate drain (bottom) -->
-                <line x1="280" y1="370" x2="280" y2="395" stroke="#90caf9" stroke-width="1.5"/>
-                <circle cx="280" cy="400" r="6" fill="#e3f2fd" stroke="#90caf9" stroke-width="1"/>
-                <text x="280" y="403" text-anchor="middle" font-size="6" fill="#1565c0" font-weight="700" font-family="Inter, sans-serif">K</text>
-                <text x="295" y="402" font-size="7" fill="#72869d" font-family="Inter, sans-serif">kondenzát</text>
-
-                <!-- ===== DIMENSIONS ===== -->
-                <!-- Width -->
-                <line x1="80" y1="390" x2="480" y2="390" stroke="#8692a6" stroke-width="0.7" stroke-dasharray="4 2"/>
-                <line x1="80" y1="385" x2="80" y2="395" stroke="#8692a6" stroke-width="0.7"/>
-                <line x1="480" y1="385" x2="480" y2="395" stroke="#8692a6" stroke-width="0.7"/>
-                <text x="280" y="405" text-anchor="middle" font-size="10" fill="#5a6a7a" font-weight="500" font-family="Inter, sans-serif">1 180 mm</text>
-
-                <!-- Height -->
-                <line x1="55" y1="170" x2="55" y2="370" stroke="#8692a6" stroke-width="0.7" stroke-dasharray="4 2"/>
-                <line x1="50" y1="170" x2="60" y2="170" stroke="#8692a6" stroke-width="0.7"/>
-                <line x1="50" y1="370" x2="60" y2="370" stroke="#8692a6" stroke-width="0.7"/>
-                <text x="45" y="275" text-anchor="middle" font-size="10" fill="#5a6a7a" font-weight="500" font-family="Inter, sans-serif" transform="rotate(-90, 45, 275)">860 mm</text>
-
-                <!-- Depth (on top face) -->
-                <line x1="480" y1="165" x2="555" y2="108" stroke="#8692a6" stroke-width="0.7" stroke-dasharray="4 2"/>
-                <text x="530" y="125" text-anchor="middle" font-size="9" fill="#5a6a7a" font-weight="500" font-family="Inter, sans-serif" transform="rotate(-37, 530, 125)">498 mm</text>
-
-                <!-- Bottom legend -->
-                <rect x="80" y="425" width="480" height="36" rx="6" fill="white" stroke="#e5e5e5" stroke-width="1"/>
-                <text font-family="Inter, sans-serif" font-size="10">
-                  <tspan x="110" y="447" fill="#1565c0" font-weight="600">e2 SUP</tspan>
-                  <tspan fill="#72869d"> přiváděný</tspan>
-                  <tspan dx="16" fill="#f57f17" font-weight="600">i1 ETA</tspan>
-                  <tspan fill="#72869d"> odváděný</tspan>
-                  <tspan dx="16" fill="#2e7d32" font-weight="600">e1 ODA</tspan>
-                  <tspan fill="#72869d"> venkovní</tspan>
-                  <tspan dx="16" fill="#6d4c41" font-weight="600">i2 EHA</tspan>
-                  <tspan fill="#72869d"> odpadní</tspan>
-                </text>
-                <!-- Weight info -->
-                <text x="280" y="473" text-anchor="middle" font-size="9" fill="#8692a6" font-family="Inter, sans-serif">Hmotnost: 115 kg | Parapetní provedení | Varianta B</text>
-              </svg>
+            <!-- 3D Viewer -->
+            <div class="construction-canvas" style="background:#eef2f7;padding:0;position:relative;min-height:520px;overflow:hidden;border-radius:var(--radius-lg)">
+              <canvas id="viewer3d" style="width:100%;height:520px;display:block;cursor:grab"></canvas>
+              <!-- Overlay controls -->
+              <div style="position:absolute;top:12px;left:12px;display:flex;gap:6px">
+                <button class="btn btn-sm" style="background:white;border:1px solid var(--c-border);color:var(--c-text-secondary);font-size:11px;padding:4px 10px" onclick="resetCamera()">
+                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 1v5h5M13 13V8H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 4.5A6 6 0 002 3l-1 2M2.5 9.5A6 6 0 0012 11l1-2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                  Reset
+                </button>
+                <button class="btn btn-sm" style="background:white;border:1px solid var(--c-border);color:var(--c-text-secondary);font-size:11px;padding:4px 10px" onclick="toggleWireframe()">Wireframe</button>
+                <button class="btn btn-sm" style="background:white;border:1px solid var(--c-border);color:var(--c-text-secondary);font-size:11px;padding:4px 10px" onclick="toggleCutaway()">Řez</button>
+              </div>
+              <!-- Port legend -->
+              <div style="position:absolute;bottom:12px;left:12px;right:12px;background:rgba(255,255,255,0.92);backdrop-filter:blur(4px);border-radius:var(--radius-sm);padding:8px 14px;display:flex;gap:20px;font-size:11px;font-family:var(--font)">
+                <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1565c0;margin-right:4px;vertical-align:middle"></span><strong style="color:#1565c0">e2 SUP</strong> <span style="color:#72869d">přiváděný</span></span>
+                <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f57f17;margin-right:4px;vertical-align:middle"></span><strong style="color:#f57f17">i1 ETA</strong> <span style="color:#72869d">odváděný</span></span>
+                <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#2e7d32;margin-right:4px;vertical-align:middle"></span><strong style="color:#2e7d32">e1 ODA</strong> <span style="color:#72869d">venkovní</span></span>
+                <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#6d4c41;margin-right:4px;vertical-align:middle"></span><strong style="color:#6d4c41">i2 EHA</strong> <span style="color:#72869d">odpadní</span></span>
+                <span style="margin-left:auto;color:#8692a6">Myš: rotace | Scroll: zoom | Shift+myš: posun</span>
+              </div>
+              <!-- Info overlay -->
+              <div style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.92);backdrop-filter:blur(4px);border-radius:var(--radius-sm);padding:8px 12px;font-size:11px;color:var(--c-text-secondary);font-family:var(--font)">
+                <strong style="color:var(--c-primary-dark)">DUPLEX 1500 Multi Eco</strong><br>
+                1 180 × 860 × 498 mm | 115 kg
+              </div>
             </div>
 
             <!-- Action buttons under drawing -->
@@ -4114,6 +3963,355 @@ document.querySelectorAll('.schema-mode-btn').forEach(btn => {
     btn.classList.add('active');
   });
 });
+</script>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+// Defer 3D init until Konstrukce tab is visible
+let viewer3dInitialized = false;
+const origShowTab = window.showTab;
+window.showTab = function(btn, tabId) {
+  origShowTab(btn, tabId);
+  if (tabId === 'tab-konstrukce' && !viewer3dInitialized) {
+    viewer3dInitialized = true;
+    setTimeout(init3DViewer, 50);
+  }
+};
+
+function init3DViewer() {
+  const canvas = document.getElementById('viewer3d');
+  if (!canvas) return;
+
+  const container = canvas.parentElement;
+  const W3D = container.clientWidth || 600;
+  const H3D = 520;
+  canvas.width = W3D * window.devicePixelRatio;
+  canvas.height = H3D * window.devicePixelRatio;
+  canvas.style.width = W3D + 'px';
+  canvas.style.height = H3D + 'px';
+
+  // Scene
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xeef2f7);
+  scene.fog = new THREE.Fog(0xeef2f7, 8, 18);
+
+  // Camera
+  const camera = new THREE.PerspectiveCamera(40, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+  camera.position.set(3.5, 2.5, 4);
+
+  // Renderer
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+
+  // Controls
+  const controls = new THREE.OrbitControls(camera, canvas);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.target.set(0, 0.3, 0);
+  controls.minDistance = 2;
+  controls.maxDistance = 10;
+  controls.maxPolarAngle = Math.PI / 2 + 0.2;
+
+  // Lights
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+  scene.add(ambientLight);
+
+  const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  dirLight.position.set(5, 8, 6);
+  dirLight.castShadow = true;
+  dirLight.shadow.mapSize.set(1024, 1024);
+  dirLight.shadow.camera.near = 0.5;
+  dirLight.shadow.camera.far = 20;
+  dirLight.shadow.camera.left = -5;
+  dirLight.shadow.camera.right = 5;
+  dirLight.shadow.camera.top = 5;
+  dirLight.shadow.camera.bottom = -5;
+  scene.add(dirLight);
+
+  const fillLight = new THREE.DirectionalLight(0xb0c4de, 0.3);
+  fillLight.position.set(-3, 4, -2);
+  scene.add(fillLight);
+
+  // Ground plane
+  const groundGeo = new THREE.PlaneGeometry(20, 20);
+  const groundMat = new THREE.MeshStandardMaterial({ color: 0xdde3eb, roughness: 0.9 });
+  const ground = new THREE.Mesh(groundGeo, groundMat);
+  ground.rotation.x = -Math.PI / 2;
+  ground.position.y = -0.5;
+  ground.receiveShadow = true;
+  scene.add(ground);
+
+  // Grid
+  const gridHelper = new THREE.GridHelper(10, 20, 0xc5ced9, 0xd5dde8);
+  gridHelper.position.y = -0.499;
+  scene.add(gridHelper);
+
+  // Materials
+  const bodyMat = new THREE.MeshStandardMaterial({ color: 0xc8d0da, roughness: 0.4, metalness: 0.3 });
+  const panelMat = new THREE.MeshStandardMaterial({ color: 0xd5dde6, roughness: 0.5, metalness: 0.2 });
+  const darkMat = new THREE.MeshStandardMaterial({ color: 0x8a98a8, roughness: 0.3, metalness: 0.4 });
+  const heatExMat = new THREE.MeshStandardMaterial({ color: 0x4a7ab5, roughness: 0.3, metalness: 0.5, transparent: true, opacity: 0.7 });
+  const fanMat = new THREE.MeshStandardMaterial({ color: 0x3a3a3a, roughness: 0.2, metalness: 0.7 });
+  const filterMat = new THREE.MeshStandardMaterial({ color: 0x8bc34a, roughness: 0.6, metalness: 0.1, transparent: true, opacity: 0.6 });
+  const controlMat = new THREE.MeshStandardMaterial({ color: 0x2d5a8e, roughness: 0.3, metalness: 0.5 });
+
+  // Port materials
+  const portSUP = new THREE.MeshStandardMaterial({ color: 0x1565c0, roughness: 0.3, metalness: 0.4 });
+  const portETA = new THREE.MeshStandardMaterial({ color: 0xf57f17, roughness: 0.3, metalness: 0.4 });
+  const portODA = new THREE.MeshStandardMaterial({ color: 0x2e7d32, roughness: 0.3, metalness: 0.4 });
+  const portEHA = new THREE.MeshStandardMaterial({ color: 0x6d4c41, roughness: 0.3, metalness: 0.4 });
+
+  // Unit dimensions: 1180 x 860 x 498 mm → scale to ~1.18 x 0.86 x 0.498
+  const W = 1.18, H = 0.86, D = 0.498;
+  const unitGroup = new THREE.Group();
+
+  // Main body
+  const bodyGeo = new THREE.BoxGeometry(W, H, D);
+  const body = new THREE.Mesh(bodyGeo, bodyMat);
+  body.castShadow = true;
+  body.receiveShadow = true;
+  unitGroup.add(body);
+
+  // Panel lines (front face grooves)
+  const panelGeo1 = new THREE.BoxGeometry(W * 0.32, H * 0.88, 0.005);
+  [-W * 0.33, 0, W * 0.33].forEach((xOff, i) => {
+    const panel = new THREE.Mesh(panelGeo1, panelMat);
+    panel.position.set(xOff, 0, D / 2 + 0.003);
+    unitGroup.add(panel);
+  });
+
+  // Panel frame edges
+  const edgeGeo = new THREE.BoxGeometry(W + 0.02, H + 0.02, D + 0.02);
+  const edges = new THREE.LineSegments(
+    new THREE.EdgesGeometry(edgeGeo),
+    new THREE.LineBasicMaterial({ color: 0x7a8898, linewidth: 1 })
+  );
+  unitGroup.add(edges);
+
+  // Heat exchanger (center, tilted diamond shape)
+  const hexGeo = new THREE.BoxGeometry(0.25, H * 0.7, 0.25);
+  const heatEx = new THREE.Mesh(hexGeo, heatExMat);
+  heatEx.rotation.y = Math.PI / 4;
+  heatEx.position.set(0, 0, 0);
+  heatEx.castShadow = true;
+  unitGroup.add(heatEx);
+
+  // Heat exchanger internal plates
+  for (let i = -3; i <= 3; i++) {
+    const plateGeo = new THREE.BoxGeometry(0.22, H * 0.65, 0.003);
+    const plate = new THREE.Mesh(plateGeo, new THREE.MeshStandardMaterial({
+      color: 0x6a9fd8, roughness: 0.3, metalness: 0.5, transparent: true, opacity: 0.3
+    }));
+    plate.rotation.y = Math.PI / 4;
+    plate.position.set(i * 0.015, 0, i * 0.015);
+    unitGroup.add(plate);
+  }
+
+  // Fan SUP (right side)
+  const fanHousingGeo = new THREE.CylinderGeometry(0.14, 0.14, 0.12, 24);
+  const fanSUP = new THREE.Mesh(fanHousingGeo, darkMat);
+  fanSUP.rotation.z = Math.PI / 2;
+  fanSUP.position.set(W * 0.33, 0.05, 0);
+  fanSUP.castShadow = true;
+  unitGroup.add(fanSUP);
+
+  // Fan blades SUP
+  for (let i = 0; i < 6; i++) {
+    const bladeGeo = new THREE.BoxGeometry(0.008, 0.12, 0.06);
+    const blade = new THREE.Mesh(bladeGeo, fanMat);
+    blade.rotation.x = (i / 6) * Math.PI;
+    blade.position.copy(fanSUP.position);
+    unitGroup.add(blade);
+  }
+
+  // Fan hub SUP
+  const hubGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.13, 16);
+  const hubSUP = new THREE.Mesh(hubGeo, fanMat);
+  hubSUP.rotation.z = Math.PI / 2;
+  hubSUP.position.copy(fanSUP.position);
+  unitGroup.add(hubSUP);
+
+  // Fan ETA (left side)
+  const fanETA = new THREE.Mesh(fanHousingGeo, darkMat);
+  fanETA.rotation.z = Math.PI / 2;
+  fanETA.position.set(-W * 0.33, 0.05, 0);
+  fanETA.castShadow = true;
+  unitGroup.add(fanETA);
+
+  for (let i = 0; i < 6; i++) {
+    const bladeGeo = new THREE.BoxGeometry(0.008, 0.12, 0.06);
+    const blade = new THREE.Mesh(bladeGeo, fanMat);
+    blade.rotation.x = (i / 6) * Math.PI + 0.3;
+    blade.position.copy(fanETA.position);
+    unitGroup.add(blade);
+  }
+  const hubETA = new THREE.Mesh(hubGeo, fanMat);
+  hubETA.rotation.z = Math.PI / 2;
+  hubETA.position.copy(fanETA.position);
+  unitGroup.add(hubETA);
+
+  // Filter SUP (right, green)
+  const filterGeo = new THREE.BoxGeometry(0.04, H * 0.65, D * 0.7);
+  const filterSUP = new THREE.Mesh(filterGeo, filterMat);
+  filterSUP.position.set(W * 0.15, 0, 0);
+  unitGroup.add(filterSUP);
+
+  // Filter fins
+  for (let i = -4; i <= 4; i++) {
+    const finGeo = new THREE.BoxGeometry(0.035, H * 0.6, 0.003);
+    const fin = new THREE.Mesh(finGeo, new THREE.MeshStandardMaterial({
+      color: 0x7cb342, roughness: 0.5, transparent: true, opacity: 0.4
+    }));
+    fin.position.set(W * 0.15, 0, i * D * 0.07);
+    unitGroup.add(fin);
+  }
+
+  // Filter ETA (left, green)
+  const filterETA = new THREE.Mesh(filterGeo, filterMat);
+  filterETA.position.set(-W * 0.15, 0, 0);
+  unitGroup.add(filterETA);
+
+  // Control module (top)
+  const ctrlGeo = new THREE.BoxGeometry(0.2, 0.06, 0.15);
+  const ctrlBox = new THREE.Mesh(ctrlGeo, controlMat);
+  ctrlBox.position.set(-0.15, H / 2 + 0.03, -0.05);
+  ctrlBox.castShadow = true;
+  unitGroup.add(ctrlBox);
+
+  // LED indicators on control box
+  const ledGeo = new THREE.SphereGeometry(0.012, 8, 8);
+  const ledGreen = new THREE.Mesh(ledGeo, new THREE.MeshStandardMaterial({ color: 0x4caf50, emissive: 0x4caf50, emissiveIntensity: 0.8 }));
+  ledGreen.position.set(-0.18, H / 2 + 0.06, 0.02);
+  unitGroup.add(ledGreen);
+  const ledOrange = new THREE.Mesh(ledGeo, new THREE.MeshStandardMaterial({ color: 0xff9800, emissive: 0xff9800, emissiveIntensity: 0.3 }));
+  ledOrange.position.set(-0.14, H / 2 + 0.06, 0.02);
+  unitGroup.add(ledOrange);
+
+  // Port e2 SUP (left side, top) - blue cylinder
+  const portGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.12, 16);
+  const pe2 = new THREE.Mesh(portGeo, portSUP);
+  pe2.rotation.z = Math.PI / 2;
+  pe2.position.set(-W / 2 - 0.06, 0.15, 0.05);
+  pe2.castShadow = true;
+  unitGroup.add(pe2);
+  // Port rim
+  const rimGeo = new THREE.TorusGeometry(0.08, 0.012, 8, 24);
+  const rimSUP = new THREE.Mesh(rimGeo, portSUP);
+  rimSUP.rotation.y = Math.PI / 2;
+  rimSUP.position.set(-W / 2 - 0.12, 0.15, 0.05);
+  unitGroup.add(rimSUP);
+
+  // Port i1 ETA (left side, bottom) - yellow
+  const pi1 = new THREE.Mesh(portGeo, portETA);
+  pi1.rotation.z = Math.PI / 2;
+  pi1.position.set(-W / 2 - 0.06, -0.15, 0.05);
+  pi1.castShadow = true;
+  unitGroup.add(pi1);
+  const rimETA = new THREE.Mesh(rimGeo, portETA);
+  rimETA.rotation.y = Math.PI / 2;
+  rimETA.position.set(-W / 2 - 0.12, -0.15, 0.05);
+  unitGroup.add(rimETA);
+
+  // Port e1 ODA (right side, bottom) - green
+  const pe1 = new THREE.Mesh(portGeo, portODA);
+  pe1.rotation.z = Math.PI / 2;
+  pe1.position.set(W / 2 + 0.06, -0.15, -0.05);
+  pe1.castShadow = true;
+  unitGroup.add(pe1);
+  const rimODA = new THREE.Mesh(rimGeo, portODA);
+  rimODA.rotation.y = Math.PI / 2;
+  rimODA.position.set(W / 2 + 0.12, -0.15, -0.05);
+  unitGroup.add(rimODA);
+
+  // Port i2 EHA (right side, top) - brown
+  const pi2 = new THREE.Mesh(portGeo, portEHA);
+  pi2.rotation.z = Math.PI / 2;
+  pi2.position.set(W / 2 + 0.06, 0.15, -0.05);
+  pi2.castShadow = true;
+  unitGroup.add(pi2);
+  const rimEHA = new THREE.Mesh(rimGeo, portEHA);
+  rimEHA.rotation.y = Math.PI / 2;
+  rimEHA.position.set(W / 2 + 0.12, 0.15, -0.05);
+  unitGroup.add(rimEHA);
+
+  // Condensate drain (bottom)
+  const drainGeo = new THREE.CylinderGeometry(0.02, 0.02, 0.1, 8);
+  const drain = new THREE.Mesh(drainGeo, new THREE.MeshStandardMaterial({ color: 0x90caf9 }));
+  drain.position.set(0, -H / 2 - 0.05, 0.1);
+  unitGroup.add(drain);
+
+  // Position unit
+  unitGroup.position.y = 0;
+  scene.add(unitGroup);
+
+  // State
+  let wireframeMode = false;
+  let cutawayMode = false;
+  const allMeshes = [];
+  unitGroup.traverse(child => { if (child.isMesh) allMeshes.push(child); });
+
+  // Animation
+  function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+
+    // Slow fan rotation
+    const t = Date.now() * 0.002;
+    unitGroup.children.forEach(child => {
+      if (child.geometry === hubGeo) {
+        // Don't rotate hubs
+      }
+    });
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // Resize
+  const ro = new ResizeObserver(() => {
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+  });
+  ro.observe(canvas.parentElement);
+
+  // Global functions
+  window.resetCamera = function() {
+    camera.position.set(3.5, 2.5, 4);
+    controls.target.set(0, 0.3, 0);
+    controls.update();
+  };
+
+  window.toggleWireframe = function() {
+    wireframeMode = !wireframeMode;
+    allMeshes.forEach(m => {
+      if (m.material) m.material.wireframe = wireframeMode;
+    });
+  };
+
+  window.toggleCutaway = function() {
+    cutawayMode = !cutawayMode;
+    // Toggle front panels visibility to show interior
+    unitGroup.children.forEach(child => {
+      if (child.isMesh && child.geometry === panelGeo1) {
+        child.visible = !cutawayMode;
+      }
+    });
+    // Make body semi-transparent in cutaway
+    body.material = cutawayMode
+      ? new THREE.MeshStandardMaterial({ color: 0xc8d0da, roughness: 0.4, metalness: 0.3, transparent: true, opacity: 0.15 })
+      : bodyMat;
+  };
+}
 </script>
 
 </body>
