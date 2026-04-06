@@ -285,86 +285,161 @@ body {
 }
 
 /* ============================================
-   SIDEBAR (stepper)
+   SIDEBAR - icon nav with sections
    ============================================ */
 .sidebar {
   width: 240px;
   background: var(--c-surface);
   border-right: 1px solid var(--c-border);
-  padding: 24px 0;
+  padding: 0;
   position: fixed;
   top: 104px;
   bottom: 0;
   left: 0;
   overflow-y: auto;
   z-index: 50;
+  display: flex;
+  flex-direction: column;
 }
 
-.sidebar-step {
+/* Progress bar at top of sidebar */
+.sidebar-progress {
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid var(--c-border-light);
+}
+
+.sidebar-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--c-text-muted);
+  margin-bottom: 6px;
+}
+
+.sidebar-progress-label strong {
+  color: var(--c-primary);
+  font-weight: 700;
+}
+
+.sidebar-progress-bar {
+  height: 4px;
+  background: var(--c-border-light);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.sidebar-progress-fill {
+  height: 100%;
+  background: var(--c-primary);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* Section grouping */
+.sidebar-section {
+  padding: 12px 0 4px;
+}
+
+.sidebar-section-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--c-text-muted);
+  padding: 0 16px 8px;
+}
+
+/* Navigation items */
+.sidebar-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
+  gap: 10px;
+  padding: 9px 16px;
   cursor: pointer;
-  transition: all 0.15s;
-  position: relative;
+  transition: all 0.12s;
   font-size: 13px;
-  color: var(--c-text-muted);
+  color: var(--c-text-secondary);
+  border-right: 3px solid transparent;
 }
 
-.sidebar-step:hover { background: var(--c-primary-light); color: var(--c-text); }
+.sidebar-item:hover {
+  background: var(--c-primary-light);
+  color: var(--c-text);
+}
 
-.sidebar-step.active {
+.sidebar-item.active {
   color: var(--c-primary);
   background: var(--c-primary-light);
   font-weight: 600;
+  border-right-color: var(--c-primary);
 }
 
-.sidebar-step.completed { color: var(--c-text); }
+.sidebar-item.completed {
+  color: var(--c-text);
+}
 
-.step-number {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 2px solid var(--c-border);
+.sidebar-item.disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Icon container */
+.sidebar-item-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
-  font-weight: 600;
   flex-shrink: 0;
-  background: white;
+  color: inherit;
 }
 
-.sidebar-step.active .step-number {
+.sidebar-item.active .sidebar-item-icon {
   background: var(--c-primary);
-  border-color: var(--c-primary);
   color: white;
+  border-radius: var(--radius-sm);
 }
 
-.sidebar-step.completed .step-number {
-  background: var(--c-success-dark);
-  border-color: var(--c-success-dark);
-  color: white;
+.sidebar-item.completed .sidebar-item-icon {
+  color: var(--c-success-dark);
 }
 
-/* connector line between steps */
-.sidebar-step:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  left: 33px;
-  top: 42px;
-  width: 2px;
-  height: 20px;
-  background: var(--c-border);
+/* Status indicator (small dot or check) */
+.sidebar-item-status {
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
-.sidebar-step.completed:not(:last-child)::after {
-  background: var(--c-success-dark);
+.sidebar-item-status .check-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #e8f5e9;
+  color: var(--c-success-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.sidebar-step.active:not(:last-child)::after {
+.sidebar-item-status .current-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
   background: var(--c-primary);
+}
+
+/* Sidebar footer */
+.sidebar-footer {
+  margin-top: auto;
+  padding: 12px 16px;
+  border-top: 1px solid var(--c-border-light);
+  font-size: 11px;
+  color: var(--c-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 /* ============================================
@@ -1414,6 +1489,386 @@ body {
 .text-sm { font-size: 13px; }
 .text-muted { color: var(--c-text-secondary); }
 .font-semibold { font-weight: 600; }
+
+/* ============================================
+   PROJEKTY VIEW - completely different layout
+   ============================================ */
+
+/* Full-width layout (no stepper sidebar) */
+.projekty-layout {
+  margin-top: 56px; /* only header, no sub-header */
+  min-height: calc(100vh - 56px);
+}
+
+/* Left panel - project tree navigation */
+.projekty-nav {
+  background: var(--c-primary-dark);
+  color: white;
+  position: fixed;
+  top: 56px;
+  bottom: 0;
+  left: 0;
+  width: 280px;
+  overflow-y: auto;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+}
+
+.projekty-nav-header {
+  padding: 20px 20px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.projekty-nav-header h3 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.projekty-search {
+  width: 100%;
+  height: 34px;
+  padding: 0 10px 0 32px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: var(--font);
+  color: white;
+  background: rgba(255,255,255,0.08);
+  transition: all 0.15s;
+}
+
+.projekty-search::placeholder { color: rgba(255,255,255,0.35); }
+.projekty-search:focus {
+  outline: none;
+  border-color: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.12);
+}
+
+.projekty-search-wrap {
+  position: relative;
+}
+
+.projekty-search-wrap .s-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.35);
+}
+
+/* Project tree items */
+.projekty-tree {
+  flex: 1;
+  padding: 8px 0;
+  overflow-y: auto;
+}
+
+.p-tree-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.12s;
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  border-left: 3px solid transparent;
+}
+
+.p-tree-item:hover {
+  background: rgba(255,255,255,0.06);
+  color: white;
+}
+
+.p-tree-item.active {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border-left-color: var(--c-orange);
+  font-weight: 600;
+}
+
+.p-tree-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.p-tree-icon.folder {
+  background: rgba(232, 133, 12, 0.2);
+  color: var(--c-orange);
+}
+
+.p-tree-icon.archive {
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.4);
+}
+
+.p-tree-meta {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 1px;
+}
+
+.p-tree-item .p-tree-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.p-tree-item .p-tree-text span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.p-tree-count {
+  font-size: 11px;
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.6);
+  padding: 1px 7px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.projekty-nav-footer {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.projekty-nav-footer .btn-new-project {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px dashed rgba(255,255,255,0.25);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font);
+  background: transparent;
+  color: rgba(255,255,255,0.6);
+}
+
+.projekty-nav-footer .btn-new-project:hover {
+  border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.06);
+  color: white;
+}
+
+/* Right content area */
+.projekty-content {
+  margin-left: 280px;
+  padding: 28px 36px;
+  background: var(--c-background);
+  min-height: calc(100vh - 56px);
+}
+
+/* Project detail header */
+.projekt-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.projekt-header-left h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--c-primary-dark);
+  margin-bottom: 6px;
+}
+
+.projekt-header-meta {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--c-text-secondary);
+}
+
+.projekt-header-meta .meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Stats row */
+.projekt-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.projekt-stat-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+}
+
+.projekt-stat-card .stat-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--c-text-secondary);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.projekt-stat-card .stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--c-primary-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.projekt-stat-card .stat-sub {
+  font-size: 12px;
+  color: var(--c-text-muted);
+  margin-top: 2px;
+}
+
+/* Zakázky section */
+.zakazky-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.zakazky-header h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c-primary-dark);
+}
+
+/* Zakázka card */
+.zakazka-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+.zakazka-card:hover {
+  border-color: var(--c-primary-medium);
+  box-shadow: 0 2px 12px var(--c-shadow-light);
+}
+
+.zakazka-status-col {
+  padding-top: 4px;
+  flex-shrink: 0;
+}
+
+.zakazka-status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 3px solid;
+}
+
+.zakazka-status-dot.done { border-color: var(--c-success-dark); background: var(--c-success); }
+.zakazka-status-dot.active { border-color: var(--c-primary); background: var(--c-primary-subtle); }
+.zakazka-status-dot.pending { border-color: var(--c-border); background: var(--c-surface-variant); }
+.zakazka-status-dot.warning { border-color: var(--c-orange); background: #fff3e0; }
+
+.zakazka-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.zakazka-body h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--c-text);
+  margin-bottom: 4px;
+}
+
+.zakazka-body h3 .z-code {
+  color: var(--c-primary);
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+.zakazka-body .z-desc {
+  font-size: 13px;
+  color: var(--c-text-secondary);
+  margin-bottom: 10px;
+}
+
+.zakazka-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12px;
+}
+
+.zakazka-dates .z-date {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--c-text-muted);
+}
+
+.zakazka-dates .z-date strong {
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+.zakazka-tags {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.zakazka-right {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.zakazka-right .z-units {
+  font-size: 12px;
+  color: var(--c-text-secondary);
+  text-align: right;
+}
+
+.zakazka-right .z-units strong {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-primary-dark);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+/* Projekty view visibility */
+.view-konfigurator,
+.view-projekty { display: none; }
+.view-konfigurator.active { display: block; }
+.view-projekty.active { display: block; }
 </style>
 </head>
 <body>
@@ -1429,8 +1884,8 @@ body {
   <nav class="header-nav">
     <a href="#">Produkty</a>
     <a href="#">Vzory</a>
-    <a href="#" class="active">Konfigurátor</a>
-    <a href="#">Projekty</a>
+    <a href="#" class="active" onclick="switchView('konfigurator'); return false;">Konfigurátor</a>
+    <a href="#" onclick="switchView('projekty'); return false;">Projekty</a>
   </nav>
   <div class="header-right">
     <span class="header-project">projekt: <strong>Rezidence Vinohrady</strong></span>
@@ -1445,6 +1900,11 @@ body {
     <div class="avatar">MP</div>
   </div>
 </header>
+
+<!-- ============================================
+     VIEW: KONFIGURATOR
+     ============================================ -->
+<div class="view-konfigurator active" id="view-konfigurator">
 
 <!-- ============================================
      SUB-HEADER
@@ -1480,41 +1940,94 @@ body {
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="sidebar-step completed" onclick="showScreen('screen-info')">
-      <div class="step-number">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+    <!-- Progress -->
+    <div class="sidebar-progress">
+      <div class="sidebar-progress-label">
+        <span>Postup konfigurace</span>
+        <strong>2 / 7</strong>
       </div>
-      <span>Základní informace</span>
+      <div class="sidebar-progress-bar">
+        <div class="sidebar-progress-fill" style="width: 28%"></div>
+      </div>
     </div>
 
-    <div class="sidebar-step active" onclick="showScreen('screen-units')">
-      <div class="step-number">2</div>
-      <span>VZT jednotky</span>
+    <!-- Section: Návrh -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Návrh</div>
+
+      <div class="sidebar-item completed" onclick="showScreen('screen-info')">
+        <div class="sidebar-item-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2a6 6 0 100 12A6 6 0 008 2z" stroke="currentColor" stroke-width="1.3"/><path d="M8 5v3M8 10h.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </div>
+        <span>Základní informace</span>
+        <div class="sidebar-item-status">
+          <div class="check-icon">
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-item active" onclick="showScreen('screen-units')">
+        <div class="sidebar-item-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M6 3V1.5M10 3V1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M5 7h6M5 10h3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </div>
+        <span>VZT jednotky</span>
+        <div class="sidebar-item-status">
+          <div class="current-dot"></div>
+        </div>
+      </div>
+
+      <div class="sidebar-item" onclick="showScreen('screen-greenbox')">
+        <div class="sidebar-item-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/></svg>
+        </div>
+        <span>GREEN boxy</span>
+      </div>
     </div>
 
-    <div class="sidebar-step" onclick="showScreen('screen-greenbox')">
-      <div class="step-number">3</div>
-      <span>GREEN boxy</span>
+    <!-- Section: Regulace -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Regulace</div>
+
+      <div class="sidebar-item disabled">
+        <div class="sidebar-item-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 12h3l1-4 2 6 2-8 1.5 6H14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span>Regulátory průtoku</span>
+      </div>
+
+      <div class="sidebar-item disabled">
+        <div class="sidebar-item-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="5" cy="5" r="2.5" stroke="currentColor" stroke-width="1.2"/><circle cx="11" cy="5" r="2.5" stroke="currentColor" stroke-width="1.2"/><circle cx="8" cy="11.5" r="2.5" stroke="currentColor" stroke-width="1.2"/><path d="M6.8 6.5L7 9M9.2 6.5L9 9" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <span>Ovládací skupiny</span>
+      </div>
+
+      <div class="sidebar-item disabled">
+        <div class="sidebar-item-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 6h12" stroke="currentColor" stroke-width="1.2"/><path d="M5 6v7M9 6v7" stroke="currentColor" stroke-width="1" stroke-dasharray="2 1.5"/></svg>
+        </div>
+        <span>Scény a kalendáře</span>
+      </div>
     </div>
 
-    <div class="sidebar-step">
-      <div class="step-number">4</div>
-      <span>Regulátory průtoku</span>
+    <!-- Section: Výstup -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Výstup</div>
+
+      <div class="sidebar-item disabled">
+        <div class="sidebar-item-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 2h10a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.2"/><path d="M5 5h6M5 8h6M5 11h3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+        </div>
+        <span>Souhrn</span>
+      </div>
     </div>
 
-    <div class="sidebar-step">
-      <div class="step-number">5</div>
-      <span>Ovládací skupiny</span>
-    </div>
-
-    <div class="sidebar-step">
-      <div class="step-number">6</div>
-      <span>Scény a kalendáře</span>
-    </div>
-
-    <div class="sidebar-step">
-      <div class="step-number">7</div>
-      <span>Souhrn</span>
+    <!-- Footer -->
+    <div class="sidebar-footer">
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11z" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5l2.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Uloženo 4. 4. 2026, 14:32
     </div>
   </aside>
 
@@ -2669,6 +3182,307 @@ body {
   </main>
 </div>
 
+
+</div><!-- /view-konfigurator -->
+
+<!-- ============================================
+     VIEW: PROJEKTY
+     ============================================ -->
+<div class="view-projekty" id="view-projekty">
+  <div class="projekty-layout">
+
+    <!-- LEFT: Project tree navigation -->
+    <nav class="projekty-nav">
+      <div class="projekty-nav-header">
+        <h3>Moje projekty</h3>
+        <div class="projekty-search-wrap">
+          <span class="s-icon">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.3"/><path d="M10 10l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </span>
+          <input type="text" class="projekty-search" placeholder="Hledat projekt...">
+        </div>
+      </div>
+
+      <div class="projekty-tree">
+        <div class="p-tree-item active" onclick="selectProject(this, 'Rezidence Vinohrady')">
+          <div class="p-tree-icon folder">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4.5A1.5 1.5 0 013.5 3H6l1.5 2h5A1.5 1.5 0 0114 6.5v5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 11.5v-7z" stroke="currentColor" stroke-width="1.3"/></svg>
+          </div>
+          <div class="p-tree-text">
+            <span>Rezidence Vinohrady</span>
+            <span class="p-tree-meta">3 zakázky</span>
+          </div>
+          <span class="p-tree-count">3</span>
+        </div>
+
+        <div class="p-tree-item" onclick="selectProject(this, 'BD Ostrava-Poruba')">
+          <div class="p-tree-icon folder">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4.5A1.5 1.5 0 013.5 3H6l1.5 2h5A1.5 1.5 0 0114 6.5v5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 11.5v-7z" stroke="currentColor" stroke-width="1.3"/></svg>
+          </div>
+          <div class="p-tree-text">
+            <span>BD Ostrava-Poruba</span>
+            <span class="p-tree-meta">5 zakázek</span>
+          </div>
+          <span class="p-tree-count">5</span>
+        </div>
+
+        <div class="p-tree-item" onclick="selectProject(this, 'Hotel Krkonoše')">
+          <div class="p-tree-icon folder">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4.5A1.5 1.5 0 013.5 3H6l1.5 2h5A1.5 1.5 0 0114 6.5v5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 11.5v-7z" stroke="currentColor" stroke-width="1.3"/></svg>
+          </div>
+          <div class="p-tree-text">
+            <span>Hotel Krkonoše</span>
+            <span class="p-tree-meta">2 zakázky</span>
+          </div>
+          <span class="p-tree-count">2</span>
+        </div>
+
+        <div class="p-tree-item" onclick="selectProject(this, 'PM_GIS_2MP')">
+          <div class="p-tree-icon folder">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4.5A1.5 1.5 0 013.5 3H6l1.5 2h5A1.5 1.5 0 0114 6.5v5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 11.5v-7z" stroke="currentColor" stroke-width="1.3"/></svg>
+          </div>
+          <div class="p-tree-text">
+            <span>PM_GIS_2MP</span>
+            <span class="p-tree-meta">1 zakázka</span>
+          </div>
+          <span class="p-tree-count">1</span>
+        </div>
+
+        <div class="p-tree-item" onclick="selectProject(this, 'Nemocnice Kladno')">
+          <div class="p-tree-icon folder">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4.5A1.5 1.5 0 013.5 3H6l1.5 2h5A1.5 1.5 0 0114 6.5v5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 11.5v-7z" stroke="currentColor" stroke-width="1.3"/></svg>
+          </div>
+          <div class="p-tree-text">
+            <span>Nemocnice Kladno</span>
+            <span class="p-tree-meta">7 zakázek</span>
+          </div>
+          <span class="p-tree-count">7</span>
+        </div>
+
+        <div class="p-tree-item" onclick="selectProject(this, 'Hotelový kotel ve Vesnu')">
+          <div class="p-tree-icon folder">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4.5A1.5 1.5 0 013.5 3H6l1.5 2h5A1.5 1.5 0 0114 6.5v5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 11.5v-7z" stroke="currentColor" stroke-width="1.3"/></svg>
+          </div>
+          <div class="p-tree-text">
+            <span>Hotelový kotel ve Vesnu</span>
+            <span class="p-tree-meta">4 zakázky</span>
+          </div>
+          <span class="p-tree-count">4</span>
+        </div>
+
+        <div class="p-tree-item" style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.08)">
+          <div class="p-tree-icon archive">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="4" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M3 6v7a1 1 0 001 1h8a1 1 0 001-1V6" stroke="currentColor" stroke-width="1.2"/><path d="M6 9h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="p-tree-text">
+            <span style="opacity:0.6">Archiv projektů</span>
+            <span class="p-tree-meta">12 projektů</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="projekty-nav-footer">
+        <button class="btn-new-project">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Nový projekt
+        </button>
+      </div>
+    </nav>
+
+    <!-- RIGHT: Project detail -->
+    <div class="projekty-content">
+
+      <!-- Project header -->
+      <div class="projekt-header">
+        <div class="projekt-header-left">
+          <h1>Rezidence Vinohrady</h1>
+          <div class="projekt-header-meta">
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11z" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5l2.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Vytvořeno: <strong>12. 1. 2026</strong>
+            </span>
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M8.5 2.5l3 3M1.5 9.5l6-6 3 3-6 6H1.5v-3z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Poslední úprava: <strong>4. 4. 2026</strong>
+            </span>
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" stroke="currentColor" stroke-width="1.2"/><path d="M2.5 12.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Autor: <strong>MP</strong>
+            </span>
+          </div>
+        </div>
+        <div class="flex gap-8">
+          <button class="btn btn-secondary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M8.5 2.5l3 3M1.5 9.5l6-6 3 3-6 6H1.5v-3z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Upravit projekt
+          </button>
+          <button class="btn btn-secondary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="2" r="1" fill="currentColor"/><circle cx="7" cy="7" r="1" fill="currentColor"/><circle cx="7" cy="12" r="1" fill="currentColor"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="projekt-stats">
+        <div class="projekt-stat-card">
+          <div class="stat-label">Zakázky celkem</div>
+          <div class="stat-value">3</div>
+          <div class="stat-sub">1 aktivní, 1 dokončená</div>
+        </div>
+        <div class="projekt-stat-card">
+          <div class="stat-label">VZT jednotky</div>
+          <div class="stat-value">5</div>
+          <div class="stat-sub">ve všech zakázkách</div>
+        </div>
+        <div class="projekt-stat-card">
+          <div class="stat-label">GREEN boxy</div>
+          <div class="stat-value">18</div>
+          <div class="stat-sub">ve všech zakázkách</div>
+        </div>
+        <div class="projekt-stat-card">
+          <div class="stat-label">Celkový průtok</div>
+          <div class="stat-value" style="white-space:nowrap">6&nbsp;850 m3/h</div>
+          <div class="stat-sub">SUP celkem</div>
+        </div>
+      </div>
+
+      <!-- Zakázky list -->
+      <div class="zakazky-header">
+        <h2>Zakázky v projektu</h2>
+        <button class="btn btn-primary btn-sm">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Nová zakázka
+        </button>
+      </div>
+
+      <!-- Zakázka 1 - Dokončená -->
+      <div class="zakazka-card">
+        <div class="zakazka-status-col">
+          <div class="zakazka-status-dot done"></div>
+        </div>
+        <div class="zakazka-body">
+          <h3><span class="z-code">Z-2026-001</span>Etapa 1 - Sekce A, bytové jednotky</h3>
+          <div class="z-desc">DUPLEX 1500 Multi Eco + 8 GREEN boxů, regulátory průtoku, ovládací skupiny</div>
+          <div class="zakazka-dates">
+            <div class="z-date">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="2.5" width="11" height="9" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 6h11M4.5 1v3M9.5 1v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Vytvoření: <strong>15. 1. 2026</strong>
+            </div>
+            <div class="z-date">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M11 5L6 10 3 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Dokončení: <strong>28. 2. 2026</strong>
+            </div>
+            <div class="z-date">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M3 7.5v3.5h8v-3.5M7 1v8M4.5 5.5L7 8.5l2.5-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Exportováno: <strong>1. 3. 2026</strong>
+            </div>
+          </div>
+          <div class="zakazka-tags">
+            <span class="badge badge-success">Dokončeno</span>
+            <span class="badge badge-info">Exportováno</span>
+          </div>
+        </div>
+        <div class="zakazka-right">
+          <div class="z-units">
+            <strong>2</strong>
+            VZT jednotky
+          </div>
+          <div class="row-actions">
+            <button class="row-action" title="Otevřít v konfigurátoru" onclick="switchView('konfigurator')">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M8.5 2.5l3 3M1.5 9.5l6-6 3 3-6 6H1.5v-3z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="row-action" title="Duplikovat">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4.5" y="1.5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 5v6.5a1 1 0 001 1H9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zakázka 2 - Aktivní -->
+      <div class="zakazka-card" style="border-left: 3px solid var(--c-primary);">
+        <div class="zakazka-status-col">
+          <div class="zakazka-status-dot active"></div>
+        </div>
+        <div class="zakazka-body">
+          <h3><span class="z-code">Z-2026-002</span>Etapa 2 - Sekce B+C, společné prostory</h3>
+          <div class="z-desc">DUPLEX 650 Flexi (3G) aM + 4 GREEN boxy, regulátory průtoku SUP/ETA</div>
+          <div class="zakazka-dates">
+            <div class="z-date">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="2.5" width="11" height="9" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 6h11M4.5 1v3M9.5 1v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Vytvoření: <strong>5. 3. 2026</strong>
+            </div>
+            <div class="z-date">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M8.5 2.5l3 3M1.5 9.5l6-6 3 3-6 6H1.5v-3z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Poslední úprava: <strong>4. 4. 2026</strong>
+            </div>
+            <div class="z-date" style="color:var(--c-orange)">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11z" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5l2.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Termín: <strong>30. 4. 2026</strong>
+            </div>
+          </div>
+          <div class="zakazka-tags">
+            <span class="badge badge-warning">Rozpracováno</span>
+            <span class="badge badge-neutral">4 / 7 kroků</span>
+          </div>
+        </div>
+        <div class="zakazka-right">
+          <div class="z-units">
+            <strong>1</strong>
+            VZT jednotka
+          </div>
+          <div class="row-actions">
+            <button class="row-action" title="Otevřít v konfigurátoru" onclick="switchView('konfigurator')" style="color:var(--c-primary)">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M8.5 2.5l3 3M1.5 9.5l6-6 3 3-6 6H1.5v-3z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="row-action" title="Duplikovat">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4.5" y="1.5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 5v6.5a1 1 0 001 1H9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zakázka 3 - Plánovaná -->
+      <div class="zakazka-card">
+        <div class="zakazka-status-col">
+          <div class="zakazka-status-dot pending"></div>
+        </div>
+        <div class="zakazka-body">
+          <h3><span class="z-code">Z-2026-003</span>Etapa 3 - Podzemní garáže, odvětrání</h3>
+          <div class="z-desc">Plánovaná zakázka - dosud bez nakonfigurovaných jednotek</div>
+          <div class="zakazka-dates">
+            <div class="z-date">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="2.5" width="11" height="9" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 6h11M4.5 1v3M9.5 1v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Vytvoření: <strong>2. 4. 2026</strong>
+            </div>
+            <div class="z-date" style="color:var(--c-orange)">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11z" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5l2.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Termín: <strong>15. 6. 2026</strong>
+            </div>
+          </div>
+          <div class="zakazka-tags">
+            <span class="badge badge-neutral">Čeká na zahájení</span>
+          </div>
+        </div>
+        <div class="zakazka-right">
+          <div class="z-units">
+            <strong>0</strong>
+            VZT jednotek
+          </div>
+          <div class="row-actions">
+            <button class="row-action" title="Otevřít v konfigurátoru" onclick="switchView('konfigurator')">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M8.5 2.5l3 3M1.5 9.5l6-6 3 3-6 6H1.5v-3z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="row-action danger" title="Odstranit">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4h10M5 4V2.5a.5.5 0 01.5-.5h3a.5.5 0 01.5.5V4M3.5 4l.5 8a1 1 0 001 1h4a1 1 0 001-1l.5-8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /projekty-content -->
+  </div><!-- /projekty-layout -->
+</div><!-- /view-projekty -->
+
 <!-- ============================================
      MODAL: KATALOG - PRIDAT VZT JEDNOTKU
      ============================================ -->
@@ -2828,18 +3642,61 @@ body {
 </div>
 
 <script>
+// View switching (Konfigurátor / Projekty)
+function switchView(view) {
+  document.querySelectorAll('.view-konfigurator, .view-projekty').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + view).classList.add('active');
+
+  // Update header nav active state
+  const navLinks = document.querySelectorAll('.header-nav a');
+  navLinks.forEach(a => a.classList.remove('active'));
+  if (view === 'konfigurator') {
+    navLinks[2].classList.add('active');
+    // Show fixed elements for konfigurator
+    document.querySelector('.sub-header').style.display = '';
+    document.querySelector('.sidebar').style.display = '';
+  } else if (view === 'projekty') {
+    navLinks[3].classList.add('active');
+    // Hide konfigurator fixed elements
+    document.querySelector('.sub-header').style.display = 'none';
+    document.querySelector('.sidebar').style.display = 'none';
+  }
+}
+
+// Project tree selection
+function selectProject(el, name) {
+  document.querySelectorAll('.p-tree-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+  // Update project title
+  document.querySelector('.projekt-header-left h1').textContent = name;
+}
+
 // Screen navigation
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
 
-  // Update sidebar
-  const steps = document.querySelectorAll('.sidebar-step');
-  if (id === 'screen-units' || id === 'screen-unit-detail') {
-    steps.forEach((s, i) => {
-      s.classList.remove('active');
-      if (i === 1) s.classList.add('active');
-    });
+  // Update sidebar active state
+  const items = document.querySelectorAll('.sidebar-item:not(.disabled)');
+  items.forEach(item => item.classList.remove('active'));
+
+  // Map screens to sidebar items
+  const screenMap = {
+    'screen-info': 0,
+    'screen-units': 1,
+    'screen-unit-detail': 1,
+    'screen-greenbox': 2
+  };
+  const idx = screenMap[id];
+  if (idx !== undefined && items[idx]) {
+    items[idx].classList.add('active');
+    // Update current-dot
+    document.querySelectorAll('.sidebar-item-status .current-dot').forEach(d => d.parentElement.remove());
+    const statusDiv = document.createElement('div');
+    statusDiv.className = 'sidebar-item-status';
+    statusDiv.innerHTML = '<div class="current-dot"></div>';
+    items[idx].appendChild(statusDiv);
   }
 }
 
